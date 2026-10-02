@@ -122,10 +122,10 @@ function Bars({
               <span className="text-slate-600">{map[k].label}</span>
               <span className="font-semibold text-slate-900">{n}</span>
             </div>
-            <div className="h-2 overflow-hidden rounded-full bg-slate-100">
+            <div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
               <div
                 className={cn(
-                  "h-full rounded-full",
+                  "h-full rounded-full transition-all duration-500 ease-out",
                   toneDot[map[k].tone as keyof typeof toneDot],
                 )}
                 style={{ width: `${(n / max) * 100}%` }}
@@ -159,15 +159,16 @@ function Content() {
         description="Here is where your ICT equipment stands today."
       />
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5">
-        {cards.map(({ k, label, icon: I, c, href }) => (
+        {cards.map(({ k, label, icon: I, c, href }, index) => (
           <Link
             key={k}
             href={href}
-            className="card group p-4 transition-shadow hover:shadow-md"
+            className="card group p-4 animate-fade-up"
+            style={{ animationDelay: `${index * 55}ms` }}
           >
             <span
               className={cn(
-                "flex h-9 w-9 items-center justify-center rounded-lg",
+                "flex h-10 w-10 items-center justify-center rounded-xl transition-transform duration-200 group-hover:scale-105",
                 c,
               )}
             >
